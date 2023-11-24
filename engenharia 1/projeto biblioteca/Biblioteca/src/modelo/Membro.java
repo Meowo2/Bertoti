@@ -6,6 +6,12 @@ public class Membro {
     private Data dataNascimento;
     private int codigo;
 
+    public Membro(String nome, Data dataNascimento, int codigo) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.codigo = codigo;
+    }
+
     public String getNome() {
         return nome;
     }

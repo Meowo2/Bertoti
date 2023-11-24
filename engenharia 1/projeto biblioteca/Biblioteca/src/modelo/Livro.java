@@ -7,6 +7,13 @@ public class Livro {
     private Data dataPublicacao;
     private int numeroISBN;
 
+    public Livro(String titulo, String autor, Data dataPublicacao, int numeroISBN) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.dataPublicacao = dataPublicacao;
+        this.numeroISBN = numeroISBN;
+    }
+    
     public String getTitulo() {
         return titulo;
     }

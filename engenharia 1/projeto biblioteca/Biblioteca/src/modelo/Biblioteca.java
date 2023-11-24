@@ -7,6 +7,11 @@ public class Biblioteca {
     
     private List<Livro> livros;
     private List<Membro> membros;
+
+    public Biblioteca(List<Livro> livros, List<Membro> membros) {
+        this.livros = livros;
+        this.membros = membros;
+    }
     
     public void adicionarLivro(Livro livro){
         livros.add(livro);

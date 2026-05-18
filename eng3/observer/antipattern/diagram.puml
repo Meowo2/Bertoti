@@ -1,0 +1,27 @@
+@startuml AntiPattern_Observer_Store
+
+title Notificação de Lançamento de Produto - ANTI-PATTERN (sem Observer)
+
+class Store {
+    - name: String
+    + launchProduct(productName: String, consumers: List<Consumer>): void
+}
+
+class Consumer {
+    - name: String
+    - wantsNotification: boolean
+    + isWantsNotification(): boolean
+    + receiveNotification(productName: String): void
+    + getName(): String
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+Store --> Consumer : conhece diretamente e filtra com if
+
+Main --> Store     : cria e lança produto
+Main --> Consumer  : cria e passa lista
+
+@enduml

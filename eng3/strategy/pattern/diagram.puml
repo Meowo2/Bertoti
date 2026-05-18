@@ -1,0 +1,54 @@
+@startuml Pattern_Strategy_LoanEvaluator
+
+title Avaliação de Empréstimo - STRATEGY PATTERN
+
+interface LoanStrategy {
+    + canBorrow(): boolean
+    + getClientType(): String
+}
+
+class ClienteComumStrategy {
+    + canBorrow(): boolean  /' false '/
+    + getClientType(): String
+}
+
+class EmpresaStrategy {
+    + canBorrow(): boolean  /' true '/
+    + getClientType(): String
+}
+
+class AposentadoStrategy {
+    + canBorrow(): boolean  /' true '/
+    + getClientType(): String
+}
+
+class EstudanteStrategy {
+    + canBorrow(): boolean  /' false '/
+    + getClientType(): String
+}
+
+class LoanEvaluator {
+    - strategy: LoanStrategy
+    + LoanEvaluator(strategy: LoanStrategy)
+    + setStrategy(strategy: LoanStrategy): void
+    + evaluate(): String
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+LoanStrategy <|.. ClienteComumStrategy  : implements
+LoanStrategy <|.. EmpresaStrategy       : implements
+LoanStrategy <|.. AposentadoStrategy    : implements
+LoanStrategy <|.. EstudanteStrategy     : implements
+
+LoanEvaluator o--> LoanStrategy : <<usa>>
+Main --> LoanEvaluator : cria e configura
+
+note bottom of ClienteComumStrategy : canBorrow() → false
+note bottom of EmpresaStrategy      : canBorrow() → true
+note bottom of AposentadoStrategy   : canBorrow() → true
+note bottom of EstudanteStrategy    : canBorrow() → false
+
+@enduml

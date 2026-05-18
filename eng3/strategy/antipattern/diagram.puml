@@ -1,0 +1,22 @@
+@startuml AntiPattern_LoanEvaluator
+
+title Avaliação de Empréstimo - ANTI-PATTERN (sem Strategy)
+
+class LoanEvaluator {
+    + evaluate(clientType: String): String
+}
+
+note right of LoanEvaluator
+  if "ClienteComum"  → false
+  if "Empresa"       → true
+  if "Aposentado"    → true
+  if "Estudante"     → false
+end note
+
+class Main {
+    + main(args: String[]): void
+}
+
+Main --> LoanEvaluator : usa
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml Pattern_Observer_Store
+
+title Notificação de Lançamento de Produto - OBSERVER PATTERN
+
+interface ProductObserver {
+    + onProductAvailable(productName: String): void
+}
+
+interface ProductSubject {
+    + subscribe(observer: ProductObserver): void
+    + unsubscribe(observer: ProductObserver): void
+    + notifyObservers(productName: String): void
+}
+
+class Store {
+    - name: String
+    - observers: List<ProductObserver>
+    + subscribe(observer: ProductObserver): void
+    + unsubscribe(observer: ProductObserver): void
+    + notifyObservers(productName: String): void
+    + launchProduct(productName: String): void
+}
+
+class Consumer {
+    - name: String
+    + onProductAvailable(productName: String): void
+    + getName(): String
+}
+
+class Main {
+    + main(args: String[]): void
+}
+
+ProductSubject  <|..  Store            : implements
+ProductObserver <|..  Consumer         : implements
+Store            o-->  ProductObserver  : <<notifica>>
+Main            -->   Store            : cria e lança produto
+Main            -->   Consumer         : cria e inscreve
+
+@enduml
